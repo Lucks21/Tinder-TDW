@@ -91,31 +91,43 @@ import {
             </span>
           )}
         </GridItem>
-  
+
         <GridItem title={"Perros con Like"}>
+        <div className="like-section">
           {like.map((likePerro) => (
             <Card key={likePerro.name}>
               <CardMedia component="img" src={likePerro.img} style={{ width: '100%', height: '400px' }}/>
+              <h4>{likePerro.name}</h4>
               <CardActions>
                 <IconButton onClick={() => handleClickDislikeCambiar(likePerro)}>
                   <ChangeCircleIcon />
                 </IconButton>
-              </CardActions>
-            </Card>
-          ))}
-        </GridItem>
-  
-        <GridItem title={"Perros con Dislike"}>
-          {dislike.map((dislikePerro) => (
-            <Card key={dislikePerro.name}>
-              <CardMedia component="img" src={dislikePerro.img} style={{ width: '100%', height: '400px' }}/>
-              <CardActions>
-                <IconButton onClick={() => handleClickLikeCambiar(dislikePerro)}>
-                  <ChangeCircleIcon />
+                <IconButton onClick={handleExpandClick}>
+                {showDescription ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                 </IconButton>
               </CardActions>
             </Card>
           ))}
+          </div>
+        </GridItem>
+
+        <GridItem title={"Perros con Dislike"}>
+        <div className="dislike-section">
+          {dislike.map((dislikePerro) => (
+            <Card key={dislikePerro.name}>
+              <CardMedia component="img" src={dislikePerro.img} style={{ width: '100%', height: '400px' }}/>
+              <h4>{dislikePerro.name}</h4>
+              <CardActions>
+                <IconButton onClick={() => handleClickLikeCambiar(dislikePerro)}>
+                  <ChangeCircleIcon />
+                </IconButton>
+                <IconButton onClick={handleExpandClick}>
+                {showDescription ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                </IconButton>
+              </CardActions>
+            </Card>
+          ))}
+        </div>
         </GridItem>
       </Grid>
     );
@@ -123,7 +135,7 @@ import {
   
   function GridItem({ title, children }) {
     return (
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid item xs={12} sm={6} md={4} sx={{ overflowY: 'auto' , maxHeight: '100vh' }}>
         <h3
           style={{ color: "#012030", fontFamily: "sans-serif", fontSize: "32px" }}
         >
@@ -151,6 +163,7 @@ import {
           alt="Imagen de un perro muy lindo"
         />
         <CardContent>{showDescription && <p>{description}</p>}</CardContent>
+        <h4>Nombre</h4>
         <CardActions>
           <IconButton onClick={handleClickLike}>
             <FavoriteIcon />
