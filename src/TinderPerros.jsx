@@ -75,7 +75,6 @@ import {
               perroImg={perroInfo.message}
               description={"Descripcion del perrito :D"}
               showDescription={showDescription}
-  
               handleClickLike={() => handleClickLike(perroInfo.message)}
               handleClickDislike={() => handleClickDislike(perroInfo.message)}
               handleExpandClick={handleExpandClick}
@@ -96,7 +95,7 @@ import {
         <GridItem title={"Perros con Like"}>
           {like.map((likePerro) => (
             <Card key={likePerro.name}>
-              <CardMedia component="img" src={likePerro.img} />
+              <CardMedia component="img" src={likePerro.img} style={{ width: '100%', height: '400px' }}/>
               <CardActions>
                 <IconButton onClick={() => handleClickDislikeCambiar(likePerro)}>
                   <ChangeCircleIcon />
@@ -109,7 +108,7 @@ import {
         <GridItem title={"Perros con Dislike"}>
           {dislike.map((dislikePerro) => (
             <Card key={dislikePerro.name}>
-              <CardMedia component="img" src={dislikePerro.img} />
+              <CardMedia component="img" src={dislikePerro.img} style={{ width: '100%', height: '400px' }}/>
               <CardActions>
                 <IconButton onClick={() => handleClickLikeCambiar(dislikePerro)}>
                   <ChangeCircleIcon />
@@ -147,7 +146,7 @@ import {
       <Card>
         <CardMedia
           component="img"
-          height="350"
+          style={{ width: '100%', height: '400px' }}
           src={perroImg}
           alt="Imagen de un perro muy lindo"
         />
